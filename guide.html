@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f8f7f1">
+    <meta name="description" content="江戸川や里見公園、市川の梨、歴史ある寺社など、市川市の見どころを写真とともに詳しく紹介します。">
+    <title>市川の見どころ解説 | いちかわ日和</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --ink: #46564f;
+        --muted: #7a867e;
+        --paper: #f8f7f1;
+        --white: #fffdf8;
+        --green: #60796a;
+        --green-dark: #4d6658;
+        --line: #e9e5d9;
+        --orange: #e5b778;
+      }
+
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        background: var(--paper);
+        color: var(--ink);
+        font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+        line-height: 1.8;
+      }
+      a { color: inherit; }
+
+      .site-header {
+        display: flex;
+        width: min(100% - 48px, 1120px);
+        min-height: 76px;
+        align-items: center;
+        justify-content: space-between;
+        margin-inline: auto;
+      }
+      .brand {
+        color: var(--green-dark);
+        font-family: Georgia, "Yu Mincho", serif;
+        font-size: 1.35rem;
+        font-weight: 700;
+        letter-spacing: .04em;
+        text-decoration: none;
+      }
+      .brand span { color: #9dab91; }
+      .home-link {
+        color: var(--green);
+        font-size: .88rem;
+        font-weight: 700;
+        text-decoration: none;
+      }
+      .home-link:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+      .page-hero {
+        padding: 66px 24px 62px;
+        background:
+          radial-gradient(ellipse at 86% 16%, #e4eddf 0, transparent 30%),
+          linear-gradient(135deg, #f4f1e6, #edf1e9);
+        text-align: center;
+      }
+      .eyebrow {
+        margin: 0 0 13px;
+        color: var(--green);
+        font-size: .76rem;
+        font-weight: 800;
+        letter-spacing: .18em;
+      }
+      h1, h2, h3 { font-family: "Yu Mincho", "Hiragino Mincho ProN", serif; }
+      h1 {
+        margin: 0;
+        font-size: clamp(2.2rem, 5vw, 3.7rem);
+        font-weight: 600;
+        letter-spacing: .04em;
+        line-height: 1.4;
+      }
+      .page-hero > p:last-child {
+        max-width: 610px;
+        margin: 16px auto 0;
+        color: #68776e;
+        font-size: .95rem;
+      }
+
+      .contents {
+        width: min(100% - 40px, 980px);
+        margin: 0 auto;
+        padding: 36px 0 22px;
+      }
+      .contents-label {
+        margin: 0 0 12px;
+        color: #98a391;
+        font-size: .75rem;
+        font-weight: 800;
+        letter-spacing: .13em;
+      }
+      .contents-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 9px;
+      }
+      .contents-links a {
+        padding: 7px 13px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: var(--white);
+        color: var(--green);
+        font-size: .82rem;
+        font-weight: 700;
+        text-decoration: none;
+        transition: background .15s, color .15s;
+      }
+      .contents-links a:hover { background: var(--green); color: white; }
+
+      .details {
+        display: grid;
+        width: min(100% - 40px, 980px);
+        gap: 20px;
+        margin: 0 auto;
+        padding: 10px 0 72px;
+      }
+      .detail {
+        display: grid;
+        grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr);
+        min-height: 420px;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        background: var(--white);
+        scroll-margin-top: 20px;
+      }
+      .detail:nth-child(even) { grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); }
+      .detail:nth-child(even) .detail-photo { order: 2; }
+      .detail-photo {
+        position: relative;
+        min-height: 390px;
+        margin: 0;
+        background: #ececde;
+      }
+      .detail-photo img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        min-height: 390px;
+        object-fit: cover;
+      }
+      .detail-photo figcaption {
+        position: absolute;
+        right: 12px;
+        bottom: 12px;
+        max-width: calc(100% - 24px);
+        padding: 4px 10px;
+        border-radius: 999px;
+        background: rgb(255 253 248 / 94%);
+        color: #68776e;
+        font-size: .72rem;
+        line-height: 1.5;
+      }
+      .detail-body {
+        align-self: center;
+        padding: clamp(28px, 4.5vw, 50px);
+      }
+      .detail-number {
+        margin: 0 0 5px;
+        color: #98a096;
+        font-family: Georgia, serif;
+        font-size: .75rem;
+        font-weight: 700;
+        letter-spacing: .12em;
+      }
+      .detail h2 {
+        margin: 0;
+        font-size: clamp(1.45rem, 3vw, 1.9rem);
+        font-weight: 600;
+        line-height: 1.5;
+      }
+      .detail-body > p {
+        margin: 14px 0 16px;
+        color: #6e7c73;
+        font-size: .93rem;
+        line-height: 1.95;
+      }
+      .detail-body > p + p { margin-top: -6px; }
+      .highlight {
+        margin: 0 0 17px;
+        padding: 12px 15px;
+        border-left: 3px solid var(--orange);
+        background: #fbf8ed;
+        color: #68776e;
+        font-size: .82rem;
+      }
+      .highlight strong { display: block; margin-bottom: 3px; color: var(--green-dark); }
+      .map-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--green);
+        font-size: .84rem;
+        font-weight: 700;
+        text-decoration: none;
+      }
+      .map-link:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+      .visit-note {
+        width: min(100% - 40px, 980px);
+        margin: 0 auto 54px;
+        padding: 17px 20px;
+        border-radius: 12px;
+        background: #edf1e7;
+        color: #68776e;
+        font-size: .84rem;
+      }
+      .visit-note strong { color: var(--green-dark); }
+
+      .photo-credits {
+        width: min(100% - 48px, 980px);
+        margin: 0 auto 24px;
+        color: var(--muted);
+        font-size: .78rem;
+      }
+      .photo-credits summary { width: fit-content; cursor: pointer; color: var(--green); font-weight: 700; }
+      .photo-credits ul {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 7px 24px;
+        margin: 12px 0 0;
+        padding-left: 20px;
+      }
+      .photo-credits a { text-underline-offset: 2px; }
+
+      footer {
+        display: flex;
+        width: min(100% - 48px, 1120px);
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        margin-inline: auto;
+        padding: 22px 0 28px;
+        border-top: 1px solid var(--line);
+        color: var(--muted);
+        font-size: .78rem;
+      }
+      footer p { margin: 0; }
+      footer a { color: var(--green); text-decoration: none; }
+      footer a:hover { text-decoration: underline; }
+      a:focus-visible { outline: 3px solid var(--orange); outline-offset: 4px; }
+
+      @media (max-width: 700px) {
+        .site-header { width: min(100% - 32px, 1120px); min-height: 68px; }
+        .page-hero { padding: 52px 20px 48px; }
+        .details { width: min(100% - 28px, 980px); gap: 14px; }
+        .detail, .detail:nth-child(even) { grid-template-columns: 1fr; }
+        .detail:nth-child(even) .detail-photo { order: 0; }
+        .detail { min-height: 0; }
+        .detail-photo, .detail-photo img { min-height: 0; height: 280px; }
+        .detail-body { padding: 27px 24px 30px; }
+        .visit-note { width: min(100% - 28px, 980px); }
+        .photo-credits { width: min(100% - 36px, 980px); }
+        .photo-credits ul { grid-template-columns: 1fr; }
+        footer { width: min(100% - 36px, 1120px); align-items: start; flex-direction: column; gap: 5px; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+        *, *::before, *::after { transition-duration: .01ms !important; }
+      }
+    </style>
+  </head>
+  <body id="top">
+    <header class="site-header">
+      <a class="brand" href="index.html#top" aria-label="いちかわ日和 ホーム">いちかわ<span>日和</span></a>
+      <a class="home-link" href="index.html#spots">← 見どころ一覧へ</a>
+    </header>
+
+    <main>
+      <section class="page-hero" aria-labelledby="page-title">
+        <p class="eyebrow">A CLOSER LOOK AT ICHIKAWA</p>
+        <h1 id="page-title">市川の見どころ案内</h1>
+        <p>川の風景、季節の味、歴史を伝える場所。市川を歩く前に知っておきたい見どころを、写真と一緒にご紹介します。</p>
+      </section>
+
+      <nav class="contents" aria-label="見どころ一覧">
+        <p class="contents-label">CONTENTS · 気になる場所から読む</p>
+        <div class="contents-links">
+          <a href="#edogawa">江戸川</a>
+          <a href="#satomi-park">里見公園</a>
+          <a href="#nashi">市川の梨</a>
+          <a href="#hachimangu">葛飾八幡宮</a>
+          <a href="#zoo">動植物園</a>
+          <a href="#hokekyoji">中山法華経寺</a>
+        </div>
+      </nav>
+
+      <div class="details">
+        <article class="detail" id="edogawa">
+          <figure class="detail-photo">
+            <img src="assets/photos/edogawa-bridge.jpg" alt="江戸川に架かる市川橋" width="960" height="540" fetchpriority="high">
+            <figcaption>市川橋と江戸川</figcaption>
+          </figure>
+          <div class="detail-body">
+            <p class="detail-number">01 · RIVERSIDE</p>
+            <h2>江戸川の河川敷</h2>
+            <p>市川の西側を流れる江戸川。川沿いに出ると空が広く、水面や橋を眺めながら、まちの中とは少し違う開放感を味わえます。散歩や自転車でゆっくり進み、時間とともに変わる川辺の光を楽しむのもおすすめです。</p>
+            <p>川辺の魅力は、同じ場所でも天気や時間帯によって表情が変わること。橋や水面を眺めながら少し足を止めると、普段のまち歩きとは違う、のびやかな時間が流れます。</p>
+            <div class="highlight"><strong>見どころ</strong>市川橋を含む川辺の景色。晴れた日は、空と川の広がりを感じながら歩けます。</div>
+            <a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=%E6%B1%9F%E6%88%B8%E5%B7%9D%E6%B2%B3%E5%B7%9D%E6%95%B7%20%E5%B8%82%E5%B7%9D%E5%B8%82" target="_blank" rel="noopener noreferrer">地図で場所を確認 <span aria-hidden="true">↗</span></a>
+          </div>
+        </article>
+
+        <article class="detail" id="satomi-park">
+          <figure class="detail-photo">
+            <img src="assets/photos/satomi-park.jpg" alt="里見公園の花壇と緑" width="960" height="640" loading="lazy" decoding="async">
+            <figcaption>園内風景 · 2010年撮影</figcaption>
+          </figure>
+          <div class="detail-body">
+            <p class="detail-number">02 · GREEN ESCAPE</p>
+            <h2>里見公園</h2>
+            <p>江戸川に近い高台にある、緑に包まれた公園です。園内を散策しながら、木々や花壇の季節ごとの表情を楽しめます。ベンチでひと休みしたり、景色を眺めたりと、予定を詰めこまず過ごしたい日にぴったりです。</p>
+            <p>花壇の彩りは季節によって変わり、木陰の小径はゆっくり歩くのにも向いています。写真は2010年に撮影された園内の風景のため、現在の花の様子とは異なる場合があります。</p>
+            <div class="highlight"><strong>見どころ</strong>花壇や園路の景色。花の見頃や園内施設の案内は、訪問前に最新情報をご確認ください。</div>
+            <a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=%E9%87%8C%E8%A6%8B%E5%85%AC%E5%9C%92%20%E5%B8%82%E5%B7%9D%E5%B8%82" target="_blank" rel="noopener noreferrer">地図で場所を確認 <span aria-hidden="true">↗</span></a>
+          </div>
+        </article>
+
+        <article class="detail" id="nashi">
+          <figure class="detail-photo">
+            <img src="assets/photos/nashi-pear.jpg" alt="皮が淡い黄褐色の日本梨" width="540" height="480" loading="lazy" decoding="async">
+            <figcaption>梨のイメージ写真 · 品種「新興」</figcaption>
+          </figure>
+          <div class="detail-body">
+            <p class="detail-number">03 · LOCAL TASTE</p>
+            <h2>市川の梨</h2>
+            <p>市川の特産品として親しまれている梨。みずみずしさや甘み、歯ざわりは品種によって少しずつ違います。旬の時期には直売所を訪ねて、生産者からおすすめを聞きながら選ぶのも、このまちならではの楽しみです。</p>
+            <p>店頭に並ぶ品種は時期によって移り変わります。気になる梨を見つけたら、食感や食べ頃を尋ねてみるのもおすすめ。写真は梨の一品種「新興」のイメージで、市川で撮影されたものではありません。</p>
+            <div class="highlight"><strong>楽しみ方</strong>直売所の営業時期や販売状況はそれぞれ異なります。訪問前に営業情報をご確認ください。</div>
+            <a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=%E6%A2%A8%E7%9B%B4%E5%A3%B2%E6%89%80%20%E5%B8%82%E5%B7%9D%E5%B8%82" target="_blank" rel="noopener noreferrer">梨の直売所を探す <span aria-hidden="true">↗</span></a>
+          </div>
+        </article>
+
+        <article class="detail" id="hachimangu">
+          <figure class="detail-photo">
+            <img src="assets/photos/katsushika-hachimangu.jpg" alt="葛飾八幡宮の拝殿" width="960" height="720" loading="lazy" decoding="async">
+            <figcaption>葛飾八幡宮の拝殿</figcaption>
+          </figure>
+          <div class="detail-body">
+            <p class="detail-number">04 · HISTORY &amp; PEACE</p>
+            <h2>葛飾八幡宮</h2>
+            <p>市川の歴史を感じられる神社です。参道から境内へ進むと、まちのにぎわいから離れて落ち着いた時間を過ごせます。境内の「千本公孫樹」は国指定天然記念物。大きく枝を広げる姿は、季節を問わず印象に残ります。</p>
+            <p>参道から境内へと進み、樹木や建物を眺めながらゆっくり参拝。祭事が行われる時期は、普段とは違う境内の雰囲気に出会えることもあります。</p>
+            <div class="highlight"><strong>見どころ</strong>天然記念物の千本公孫樹。秋にはイチョウの黄葉も楽しめます。</div>
+            <a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=%E8%91%9B%E9%A3%BE%E5%85%AB%E5%B9%A1%E5%AE%AE%20%E5%B8%82%E5%B7%9D%E5%B8%82" target="_blank" rel="noopener noreferrer">地図で場所を確認 <span aria-hidden="true">↗</span></a>
+          </div>
+        </article>
+
+        <article class="detail" id="zoo">
+          <figure class="detail-photo">
+            <img src="assets/photos/ichikawa-zoo-capybara.jpg" alt="市川市動植物園のカピバラ（2009年撮影）" width="960" height="640" loading="lazy" decoding="async">
+            <figcaption>カピバラ · 2009年撮影</figcaption>
+          </figure>
+          <div class="detail-body">
+            <p class="detail-number">05 · ANIMALS &amp; PLANTS</p>
+            <h2>市川市動植物園</h2>
+            <p>動物たちの様子を観察したり、植物の緑に触れたりできるおでかけスポットです。動物園と植物園の両方を楽しめるので、家族でゆっくり過ごしたい日にも。掲載写真は園内で撮影されたカピバラの写真（2009年）です。</p>
+            <p>動物を眺める時間と、緑の中を歩く時間を組み合わせて、自分のペースで楽しめるのが魅力。掲載写真は過去の記録なので、現在見られる動物や展示内容を示すものではありません。</p>
+            <div class="highlight"><strong>お出かけ前に</strong>展示内容や開園日、利用案内は変更される場合があります。最新情報を公式案内でご確認ください。</div>
+            <a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=%E5%B8%82%E5%B7%9D%E5%B8%82%E5%8B%95%E6%A4%8D%E7%89%A9%E5%9C%92" target="_blank" rel="noopener noreferrer">地図で場所を確認 <span aria-hidden="true">↗</span></a>
+          </div>
+        </article>
+
+        <article class="detail" id="hokekyoji">
+          <figure class="detail-photo">
+            <img src="assets/photos/hokekyoji-sakura.jpg" alt="桜に彩られた中山法華経寺の堂宇" width="960" height="640" loading="lazy" decoding="async">
+            <figcaption>境内の桜 · 2018年撮影</figcaption>
+          </figure>
+          <div class="detail-body">
+            <p class="detail-number">06 · TEMPLE TOWN</p>
+            <h2>中山法華経寺</h2>
+            <p>歴史ある寺院と門前のまち並みが魅力の場所です。参道を歩きながら、建物のたたずまいや門前町の雰囲気を味わえます。桜の季節は境内の景色も華やかに。静かな場所では、周囲の方への配慮を忘れずに散策しましょう。</p>
+            <p>門前から境内へ進むにつれて、まちの表情が少しずつ変わっていきます。桜の写真は2018年撮影のものです。参道や建物を眺めながら、門前町と寺院の風情を合わせて楽しんでください。</p>
+            <div class="highlight"><strong>見どころ</strong>寺院の建築と門前の風情。桜の開花時期は年によって異なります。</div>
+            <a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=%E4%B8%AD%E5%B1%B1%E6%B3%95%E8%8F%AF%E7%B5%8C%E5%AF%BA%20%E5%B8%82%E5%B7%9D%E5%B8%82" target="_blank" rel="noopener noreferrer">地図で場所を確認 <span aria-hidden="true">↗</span></a>
+          </div>
+        </article>
+      </div>
+
+      <aside class="visit-note">
+        <strong>お出かけ前に:</strong> 写真は撮影当時の様子です。施設の開園・営業情報、梨の販売時期、花の見頃は変わるため、最新情報をご確認ください。
+      </aside>
+    </main>
+
+    <details class="photo-credits">
+      <summary>写真クレジット・ライセンス</summary>
+      <ul>
+        <li>江戸川・市川橋: <a href="https://commons.wikimedia.org/wiki/File:Ichikawa_bridge_20200503_173656.jpg" target="_blank" rel="noopener noreferrer">LERK, Wikimedia Commons</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a></li>
+        <li>里見公園: <a href="https://commons.wikimedia.org/wiki/File:SatomiKouen.jpg" target="_blank" rel="noopener noreferrer">麒麟坊, Wikimedia Commons</a>, <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 3.0</a></li>
+        <li>梨（新興）: <a href="https://commons.wikimedia.org/wiki/File:Nashi_pear_(shinko).jpg" target="_blank" rel="noopener noreferrer">Hisagi / Iceheron, Wikimedia Commons</a>, <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 3.0</a></li>
+        <li>葛飾八幡宮: <a href="https://commons.wikimedia.org/wiki/File:Katsushika_Hachiman-g%C5%AB_6.jpg" target="_blank" rel="noopener noreferrer">掬茶, Wikimedia Commons</a>, <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 3.0</a></li>
+        <li>市川市動植物園のカピバラ: <a href="https://commons.wikimedia.org/wiki/File:Capybara_at_Ichikawa_Zoo,_2009.jpg" target="_blank" rel="noopener noreferrer">TANAKA Juuyoh, Wikimedia Commons</a>, <a href="https://creativecommons.org/licenses/by/2.0/" target="_blank" rel="noopener noreferrer">CC BY 2.0</a></li>
+        <li>中山法華経寺の桜: <a href="https://commons.wikimedia.org/wiki/File:Cherry_blossoms_at_Hokekyoji_Temple,_Ichikawa,_2018.jpg" target="_blank" rel="noopener noreferrer">t.kunikuni, Wikimedia Commons</a>, <a href="https://creativecommons.org/licenses/by-sa/2.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 2.0</a></li>
+      </ul>
+    </details>
+
+    <footer>
+      <p>いちかわ日和 — 市川のまちを歩こう</p>
+      <p><a href="index.html">トップページへ戻る</a> · 見どころや営業情報はお出かけ前にご確認ください。</p>
+    </footer>
+  </body>
+</html>
